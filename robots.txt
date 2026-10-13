@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://ctbia-blogposts.github.io/ws2026/sitemap.xml
+Sitemap: https://ctbia-blogposts.github.io/WS2026/sitemap.xml
