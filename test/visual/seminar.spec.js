@@ -107,3 +107,21 @@ for (const theme of ["light", "dark"]) {
     }
   });
 }
+
+test("defaults to light and remembers theme choices", async ({ page }) => {
+  await page.route("**/livereload.js*", (route) => route.abort());
+  await page.emulateMedia({ colorScheme: "dark" });
+  await page.goto("/WS2026/", { waitUntil: "networkidle" });
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+  await expect(page.locator("html")).toHaveAttribute("data-theme-setting", "light");
+  await page.locator("#light-toggle").click();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  await page.reload({ waitUntil: "networkidle" });
+  await expect(page.locator("html")).toHaveAttribute("data-theme-setting", "dark");
+  await page.locator("#light-toggle").click();
+  await expect(page.locator("html")).toHaveAttribute("data-theme-setting", "system");
+  await page.reload({ waitUntil: "networkidle" });
+  await expect(page.locator("html")).toHaveAttribute("data-theme-setting", "system");
+  await page.emulateMedia({ colorScheme: "light" });
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+});

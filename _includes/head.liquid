@@ -127,7 +127,12 @@
 <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
 
 {% if site.enable_darkmode %}
-  <!-- Dark Mode -->
+  <!-- Default first-time visitors to light; retain saved light, dark, or system choices. -->
+  <script>
+    if (!['light', 'dark', 'system'].includes(localStorage.getItem('theme'))) {
+      localStorage.setItem('theme', 'light');
+    }
+  </script>
   <script src="{{ '/assets/js/theme.js' | relative_url | bust_file_cache }}"></script>
   <link
     defer
