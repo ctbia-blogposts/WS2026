@@ -15,6 +15,7 @@ permissions:
   contents: write
 jobs:
   rendercv:
+    if: github.repository == 'alshedivat/al-folio'
     name: RenderCV
     runs-on: ubuntu-latest
     steps:

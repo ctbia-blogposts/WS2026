@@ -16,6 +16,7 @@ on:
 
 jobs:
   build:
+    if: github.repository == 'alshedivat/al-folio'
     # Publishes the upstream image with upstream Docker Hub secrets; matches the
     # guard on deploy-image.yml so tag pushes on template sites don't fail.
     if: github.repository_owner == 'alshedivat'

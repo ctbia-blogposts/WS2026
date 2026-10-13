@@ -9,6 +9,7 @@ on:
 
 jobs:
   update-citations:
+    if: github.repository == 'alshedivat/al-folio'
     runs-on: ubuntu-latest
 
     steps:

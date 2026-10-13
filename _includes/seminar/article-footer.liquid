@@ -1,0 +1,50 @@
+<footer class="seminar-article-footer" aria-label="Article credits and navigation">
+  {% if page.distill_demo %}
+    <p>This feature demonstration uses the seminar layout and the original al-folio example content and authors.</p>
+  {% elsif page.status != 'forthcoming' %}
+    <p>
+      Written by {{ page.student_author | default: 'Student author to be assigned' | escape }} for {{ site.data.seminar.name | escape }} ·
+      {{ site.data.seminar.edition | escape -}}
+      <br>
+      {{ page.affiliation | default: site.data.seminar.university | escape }}
+    </p>
+  {% endif %}
+  {% if page.paper_url and page.status != 'forthcoming' %}
+    <p>
+      Original paper: {% if page.paper_authors.size > 0 %}{{ page.paper_authors | join: ', ' | escape }} · {% endif -%}
+      <a href="{{ page.paper_url | relative_url }}">{{ page.paper_title | default: page.title | escape }}</a>
+      {%- if page.venue %} · {{ page.venue | escape }}{% endif -%}
+      {%- if page.paper_year %} {{ page.paper_year }}{% endif %}
+    </p>
+  {% endif %}
+  {% if page.supervisor and page.supervisor != '' %}
+    <p>Supervisor: {{ page.supervisor | escape }}</p>
+  {% endif %}
+  {% assign articles = site.posts | where: 'seminar', true | where_exp: 'post', 'post.example != true' | sort: 'order' %}
+  {% for article in articles %}
+    {% if article.url == page.url %}
+      {% unless forloop.first -%}
+        {%- assign prev_index = forloop.index0 | minus: 1 -%}
+        {%- assign previous_article = articles[prev_index] -%}
+      {%- endunless %}
+      {% unless forloop.last -%}
+        {%- assign next_index = forloop.index0 | plus: 1 -%}
+        {%- assign next_article = articles[next_index] -%}
+      {%- endunless %}
+    {% endif %}
+  {% endfor %}
+  <nav class="seminar-article-nav" aria-label="Article navigation">
+    {% if previous_article -%}
+      <a href="{{ previous_article.url | relative_url }}"
+        >← Previous article<br>
+        {{ previous_article.title | escape -}}
+      </a>
+    {%- endif %}
+    {% if next_article -%}
+      <a href="{{ next_article.url | relative_url }}"
+        >Next article →<br>
+        {{ next_article.title | escape -}}
+      </a>
+    {%- endif %}
+  </nav>
+</footer>

@@ -1,0 +1,13 @@
+name: Current Trends in Biomedical Image Analysis
+unit: Machine Learning for Medical Data
+university: Heinrich Heine University Düsseldorf
+semester: Winter Semester 2026/27
+edition: WS2026/27
+logos: [] # Later: [{src: /assets/img/identity/hhu.svg, alt: Heinrich Heine University Düsseldorf, url: https://www.hhu.de/}]
+navigation:
+  - title: Articles
+    url: /
+  - title: About
+    url: /about/
+  - title: Writing Guidelines
+    url: /writing-guidelines/

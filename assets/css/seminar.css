@@ -1,0 +1,483 @@
+/* Minimal site additions. Typography, themes, and scientific grids belong to al-folio/Distill. */
+body.seminar-site {
+  margin: 0;
+  padding: 0;
+}
+.seminar-site {
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif;
+  --global-text-color-light: #666;
+  --global-theme-color: #176b71;
+  --global-hover-color: #176b71;
+}
+html[data-theme="dark"] .seminar-site {
+  --global-text-color-light: #aaa;
+  --global-theme-color: #86cbd0;
+  --global-hover-color: #86cbd0;
+}
+.seminar-header,
+.seminar-site-footer {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: 20px 15px;
+}
+.seminar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.seminar-brand {
+  margin: 0 0 5px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+.seminar-brand a {
+  color: var(--global-text-color);
+}
+.seminar-secondary {
+  color: var(--global-text-color-light);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.seminar-header p {
+  margin: 0;
+}
+.seminar-header nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  font-size: 13px;
+}
+.seminar-header nav a {
+  color: var(--global-text-color);
+  white-space: nowrap;
+}
+.seminar-header nav a[aria-current] {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.seminar-header button {
+  border: 0;
+  background: none;
+  color: var(--global-text-color);
+  font: inherit;
+  padding: 4px 0;
+  cursor: pointer;
+}
+.seminar-main {
+  max-width: var(--max-content-width);
+  font-size: 17px;
+  line-height: 1.65;
+  margin-top: 18px;
+  margin-bottom: 40px;
+}
+.seminar-main > .post-header {
+  margin-bottom: 24px;
+}
+.seminar-introduction {
+  max-width: 100%;
+  margin-bottom: 32px;
+}
+.seminar-entry {
+  margin: 0 0 30px;
+  max-width: 100%;
+  display: flow-root;
+}
+.seminar-entry h2 {
+  font-size: 21px;
+  font-weight: 500;
+  margin: 0 0 8px;
+}
+.seminar-entry h2 a {
+  color: var(--global-text-color);
+}
+.seminar-entry p {
+  margin: 0 0 8px;
+}
+.seminar-thumbnail {
+  width: 100px;
+  max-height: 100px;
+  object-fit: contain;
+  float: right;
+  margin: 0 0 12px 20px;
+}
+.seminar-site-footer {
+  font-size: 12px;
+  color: var(--global-text-color-light);
+}
+.seminar-site-footer img {
+  max-width: 120px;
+  height: auto;
+  margin-left: 16px;
+}
+.seminar-site :focus-visible {
+  outline: 2px solid var(--global-theme-color);
+  outline-offset: 4px;
+}
+.seminar-skip {
+  position: absolute;
+  top: -100px;
+  left: 15px;
+  z-index: 100;
+  background: var(--global-bg-color);
+  padding: 8px;
+}
+.seminar-skip:focus {
+  top: 8px;
+}
+/* Retain Distill's named grid lines and wide-figure classes; adjust document scale and spacing only. */
+.seminar-site d-title {
+  padding: 24px 0 12px;
+}
+/* Align the opening with the native prose tracks; wide figures retain their own tracks. */
+.seminar-site d-title > * {
+  grid-column: text;
+}
+.seminar-site d-title h1 {
+  font-size: clamp(30px, 3.2vw, 42px);
+  font-weight: 600;
+  line-height: 1.2;
+}
+.seminar-site d-title > p {
+  font-size: 17px;
+  margin-bottom: 16px;
+}
+.seminar-site d-title .seminar-byline,
+.seminar-site d-title .seminar-context,
+.seminar-site d-title .seminar-topic,
+.seminar-site d-title .seminar-links {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 6px;
+}
+.seminar-context,
+.seminar-topic {
+  color: var(--global-text-color-light);
+}
+.seminar-site d-article {
+  font-size: 17px;
+  line-height: 1.65;
+  padding-top: 16px;
+  border-top: 0;
+}
+.seminar-site d-article h2 {
+  font-size: 28px;
+  margin: 32px 0 16px;
+  padding-bottom: 8px;
+}
+.seminar-site d-article > h2:first-of-type {
+  margin-top: 16px;
+}
+.seminar-site d-article h3 {
+  font-size: 22px;
+}
+d-article .seminar-secondary {
+  font-size: 14px;
+}
+d-appendix[hidden] {
+  display: none;
+}
+.seminar-glance {
+  margin: 24px 0;
+}
+d-article .seminar-glance h2 {
+  font-size: 20px;
+  margin: 0 0 16px;
+  border: 0;
+}
+.seminar-glance dt {
+  font-weight: 600;
+}
+.seminar-glance dd {
+  margin: 4px 0 12px;
+}
+d-article blockquote.seminar-callout {
+  font-style: normal;
+  border-left: 2px solid var(--global-divider-color) !important;
+  padding-left: 18px;
+  margin: 24px 0;
+}
+.seminar-callout p:last-child {
+  margin-bottom: 0;
+}
+/* Figures breathe in the document; the visual and caption have no card frame. */
+.seminar-site d-article figure {
+  margin-block: 40px 48px;
+}
+.seminar-site d-article figure figcaption {
+  max-width: 704px;
+  margin: 16px auto 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--global-text-color-light);
+}
+.seminar-site d-article figure figcaption p {
+  font-size: inherit;
+  line-height: inherit;
+  color: var(--global-text-color-light) !important;
+  margin-bottom: 8px;
+}
+.seminar-site d-article figure figcaption p:last-child {
+  margin-bottom: 0;
+}
+.seminar-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+/* Opt-in separation for explanatory diagrams only; labels/captions stay on the page. */
+.seminar-figure-neutral {
+  padding: 20px;
+  background: color-mix(in srgb, var(--global-text-color) 4%, var(--global-bg-color));
+}
+.seminar-diagram {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+}
+.seminar-diagram > div {
+  flex: 1;
+}
+.seminar-diagram strong,
+.seminar-diagram span {
+  display: block;
+}
+.seminar-diagram span {
+  font-size: 13px;
+  color: var(--global-text-color-light);
+}
+.seminar-site d-article.seminar-endmatter {
+  padding: 20px 0 0;
+}
+d-article .seminar-article-footer {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--global-text-color-light);
+}
+d-article .seminar-article-footer p {
+  color: var(--global-text-color-light) !important;
+  margin-bottom: 8px;
+}
+.seminar-article-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 24px;
+}
+.seminar-article-nav a {
+  max-width: 48%;
+}
+.seminar-site d-article d-contents nav h3 {
+  font-size: 14px;
+  margin-top: 0;
+}
+d-article d-contents nav div {
+  font-weight: 400;
+}
+/* Keep plugin-generated chart source hidden; equations scroll within their own row. */
+d-article pre.unloaded {
+  display: none !important;
+}
+d-article pre.mermaid {
+  background: transparent;
+  padding: 0;
+}
+d-article mjx-container[display="true"] {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+/* Keep the TOC on the page tracks immediately beside the prose, not in the viewport gutter. */
+@media (min-width: 1100px) {
+  .seminar-site d-article > d-contents {
+    grid-column: page-start / text-start;
+    display: block;
+    width: auto;
+    margin: 0;
+    padding: 0 16px 0 0;
+    justify-self: stretch;
+  }
+}
+@media (max-width: 760px) {
+  .seminar-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .seminar-main {
+    margin-top: 10px;
+  }
+  .seminar-site d-article figure {
+    margin-block: 32px 36px;
+  }
+  .seminar-figure-neutral {
+    padding: 16px;
+  }
+  .seminar-diagram {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .seminar-diagram > span {
+    transform: rotate(90deg);
+  }
+  d-article d-contents {
+    display: none;
+  }
+}
+
+/* Scale compiled diagrams to the figure width rather than their small TeX dimensions. */
+.seminar-tikz svg {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+/* Adapt TikZ's default black ink; preserve explicit colors and unfilled paths. */
+html[data-theme="dark"] .seminar-tikz svg [fill="#000"],
+html[data-theme="dark"] .seminar-tikz svg [fill="black"] {
+  fill: var(--global-text-color);
+}
+html[data-theme="dark"] .seminar-tikz svg [stroke="#000"],
+html[data-theme="dark"] .seminar-tikz svg [stroke="black"] {
+  stroke: var(--global-text-color);
+}
+/* Article experiments are figures, with ordinary labels and native controls. */
+.ddpm-experiment-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 24px;
+  font-size: 14px;
+}
+.ddpm-experiment-controls label {
+  grid-row: 1;
+}
+.ddpm-experiment-controls input {
+  width: 100%;
+  accent-color: var(--global-theme-color);
+}
+.ddpm-experiment-controls span {
+  display: block;
+  color: var(--global-text-color-light);
+}
+#ddpm-density-plot svg {
+  display: block;
+  width: 100%;
+}
+d-article .ddpm-experiment-result {
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 8px 0 0;
+  font-variant-numeric: tabular-nums;
+}
+.ddpm-step-controls {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.ddpm-step-controls label {
+  grid-row: auto;
+}
+.ddpm-step-controls input {
+  margin-top: 8px;
+}
+#ddpm-step-plot svg {
+  display: block;
+  width: 100%;
+}
+d-article .ddpm-experiment-actions {
+  font-size: 14px;
+  margin: 12px 0;
+}
+.ddpm-experiment-actions button {
+  padding: 0;
+  margin-right: 16px;
+  border: 0;
+  background: transparent;
+  color: var(--global-theme-color);
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.ddpm-experiment-actions button:disabled {
+  color: var(--global-text-color-light);
+  cursor: default;
+}
+.ddpm-table-scroll {
+  overflow-x: auto;
+  margin: 24px 0;
+}
+.ddpm-table-scroll table {
+  width: 100%;
+  min-width: 440px;
+}
+@media (max-width: 600px) {
+  .ddpm-step-controls {
+    grid-template-columns: 1fr;
+  }
+}
+/* Native Distill marginalia; use the prose tracks when the gutter is too narrow. */
+.seminar-site d-article aside.seminar-sidenote {
+  font-size: 13px;
+  line-height: 1.55;
+  align-self: start;
+  margin: 0;
+}
+.seminar-site d-article aside.seminar-sidenote p {
+  font-size: inherit;
+  line-height: inherit;
+  color: var(--global-text-color-light) !important;
+  margin: 0;
+}
+.seminar-site d-article details.seminar-derivation {
+  background: transparent;
+  border-radius: 0;
+  border-block: 1px solid var(--global-divider-color);
+  padding: 12px 0;
+  margin-block: 24px;
+}
+.seminar-derivation summary {
+  cursor: pointer;
+  font-weight: 500;
+}
+@media (max-width: 1099px) {
+  .seminar-site d-article aside.seminar-sidenote {
+    grid-column: text;
+    margin: 8px 0 20px;
+    padding-left: 14px;
+    border-left: 1px solid var(--global-divider-color);
+  }
+}
+
+/* The text theme control should share navigation typography, not icon-button sizing. */
+.seminar-header #light-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  width: auto;
+  height: auto;
+  padding: 0;
+  line-height: inherit;
+  transform: none;
+}
+/* Center the library's arrow independently of inherited SVG margins. */
+.seminar-site #back-to-top {
+  display: grid;
+  place-items: center;
+}
+.seminar-site #back-to-top svg {
+  display: block;
+  position: static;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  padding: 0;
+  transform: none;
+}

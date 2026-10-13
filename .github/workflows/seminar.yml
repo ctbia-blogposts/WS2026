@@ -1,0 +1,36 @@
+name: Seminar checks
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+jobs:
+  publication:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3.5"
+          bundler-cache: true
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "20"
+          cache: npm
+      - run: npm ci
+      - run: npm run lint:prettier
+      - run: npm run lint:style-contract
+      - run: sudo apt-get update && sudo apt-get install -y imagemagick
+      - run: bundle exec jekyll build
+      - run: bash test/integration_seminar_distill.sh
+      - run: bundle exec al-folio upgrade audit
+      - run: bundle exec al-folio upgrade overrides audit
+      - run: npx playwright install --with-deps chromium webkit
+      - run: npm run test:visual
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: seminar-browser-checks
+          path: |
+            output/playwright/
+            test-results/

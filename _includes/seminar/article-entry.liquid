@@ -1,0 +1,11 @@
+{% assign article = include.article %}
+<article class="seminar-entry">
+  {% if article.hero -%}
+    <img class="seminar-thumbnail" src="{{ article.hero | relative_url }}" alt="{{ article.hero_alt | escape }}" loading="lazy">
+  {%- endif %}
+  <h2>
+    <a href="{{ article.url | relative_url }}">{{ article.title | escape }}</a>
+  </h2>
+  <p>{{ article.hook | default: article.description | escape }}</p>
+  <p class="seminar-secondary">{% include seminar/paper-metadata.liquid article=article show_author=true %}</p>
+</article>

@@ -2,21 +2,14 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: blank # the website title (if blank, full name will be used instead)
-first_name: You
-middle_name: R.
-last_name: Name
-contact_note: >
-  You can even add a little note about which of these is the best way to reach you.
-description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+title: Current Trends in Biomedical Image Analysis
+description: >
+  Illustrated research articles from the biomedical image analysis seminar at Heinrich Heine University Düsseldorf.
 footer_text: >
-  Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
-  Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
-  Photos from <a href="https://unsplash.com" target="_blank">Unsplash</a>.
-keywords: jekyll, jekyll-theme, academic-website, portfolio-website # add your own keywords or leave empty
+  Current Trends in Biomedical Image Analysis · Winter Semester 2026/27
+keywords: biomedical image analysis, medical machine learning, seminar, scientific explanation
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
-icon: ⚛️ # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
+icon: # Add an official icon when available.
 apple_touch_icon: # image name in /assets/img/ (or a rooted path / absolute URL) used for iOS home-screen bookmarks; needs a real 180x180 PNG, since Safari ignores the emoji favicon above. Left empty, iOS falls back to a screenshot of the page.
 
 url: https://ctbia-blogposts.github.io # the base hostname & protocol for your site
@@ -72,7 +65,7 @@ al_folio:
     allow_remote_loader: false
   features:
     cv:
-      enabled: true
+      enabled: false
     distill:
       enabled: true
   compat:
@@ -95,10 +88,10 @@ al_folio:
 # Layout
 # -----------------------------------------------------------------------------
 
-navbar_fixed: true
-footer_fixed: true
-search_enabled: true
-socials_in_search: true
+navbar_fixed: false
+footer_fixed: false
+search_enabled: false
+socials_in_search: false
 posts_in_search: true
 bib_search: true
 
@@ -136,17 +129,17 @@ bing_site_verification: # out your bing-site-verification ID (Bing Webmaster)
 # Blog
 # -----------------------------------------------------------------------------
 
-blog_name: al-folio # blog_name will be displayed in your blog page
-blog_description: a simple whitespace theme for academics
-permalink: /blog/:year/:title/
+blog_name: Seminar articles # blog_name will be displayed in your blog page
+blog_description: Illustrated explanations of current biomedical research
+permalink: /articles/:title/
 lsi: false # produce an index for related posts
 
 # Pagination
 pagination:
-  enabled: true
+  enabled: false
 
 related_blog_posts:
-  enabled: true
+  enabled: false
   max_related: 5
 
 # Giscus comments (RECOMMENDED)
@@ -166,24 +159,14 @@ giscus:
   lang: en
 
 # Disqus comments (DEPRECATED)
-disqus_shortname: al-folio # put your disqus shortname
+disqus_shortname: # put your disqus shortname
 # https://help.disqus.com/en/articles/1717111-what-s-a-shortname
 
 # External sources.
 # If you have blog posts published on medium.com or other external sources,
 # you can display them in your blog by adding a link to the RSS feed.
 # Optional: Set default categories and tags for posts from each source.
-external_sources:
-  - name: medium.com
-    rss_url: https://medium.com/@al-folio/feed
-    categories: [external-posts]
-    tags: [medium]
-  - name: Google Blog
-    posts:
-      - url: https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/
-        published_date: 2024-05-14
-    categories: [external-posts]
-    tags: [google]
+external_sources: []
 
 # -----------------------------------------------------------------------------
 # Newsletter
@@ -200,15 +183,15 @@ newsletter:
 
 collections:
   books:
-    output: true
+    output: false
   news:
     defaults:
       layout: post
-    output: true
+    output: false
   projects:
-    output: true
+    output: false
   teachings:
-    output: true
+    output: false
 
 # -----------------------------------------------------------------------------
 # Jekyll settings
@@ -230,7 +213,67 @@ kramdown:
 # Includes & excludes
 include: ["_pages"]
 exclude:
+  - .agents/
+  - .claude/
+  - .codex/
+  - _site/
+  - node_modules/
+  - output/
+  - test-results/
+  - _posts/2024-01-26-chartjs.md
+  - _posts/2023-03-21-tables.md
+  - _posts/2023-03-20-table-of-contents.md
+  - _posts/2020-09-28-twitter.md
+  - _posts/2021-07-04-diagrams.md
+  - _posts/2024-12-04-photo-gallery.md
+  - _posts/2015-10-20-disqus-comments.md
+  - _posts/2024-04-29-typograms.md
+  - _posts/2015-03-15-formatting-and-links.md
+  - _posts/2024-01-27-code-diff.md
+  - _posts/2023-05-12-custom-blockquotes.md
+  - _posts/2025-03-26-plotly.md
+  - _posts/2023-04-25-sidebar-table-of-contents.md
+  - _posts/2023-07-04-jupyter-notebook.md
+  - _posts/2022-10-15-rtl.md
+  - _posts/2024-05-01-tabs.md
+  - _posts/2022-02-01-redirect.md
+  - _posts/2024-04-15-pseudocode.md
+  - _posts/2022-12-10-giscus-comments.md
+  - _posts/2024-01-26-geojson-map.md
+  - _posts/2023-04-24-videos.md
+  - _posts/2024-01-26-echarts.md
+  - _posts/2024-01-27-vega-lite.md
+  - _posts/2023-07-12-post-bibliography.md
+  - _posts/2015-10-20-math.md
+  - _posts/2023-12-12-tikzjax.md
+  - _posts/2015-05-15-images.md
+  - _posts/2025-04-28-marimo.md
+  - _posts/2023-04-25-audios.md
+  - _posts/2015-07-15-code.md
+  - _posts/2024-04-28-post-citation.md
+  - _posts/2024-01-27-advanced-images.md
+  - _pages/books.md
+  - _pages/about_einstein.md
+  - _pages/teaching.md
+  - _pages/plugins.md
+  - _pages/publications.md
+  - _pages/projects.md
+  - _pages/dropdown.md
+  - _pages/blog.md
+  - _pages/profiles.md
+  - _pages/news.md
+  - _pages/cv.md
+  - _pages/repositories.md
+  - assets/jupyter/
+  - assets/rendercv/
+  - assets/json/resume.json
   - AGENTS.md
+  - test/
+  - _projects/
+  - _news/
+  - _teachings/
+  - _books/
+  - _data/socials.yml
   - al-folio-upgrade-report.md
   - bin/
   - CLAUDE.md
@@ -340,13 +383,13 @@ terser:
 
 jekyll-archives:
   posts:
-    enabled: [year, tags, categories] # enables year, tag and category archives (remove if you need to disable one of them).
+    enabled: [] # enables year, tag and category archives (remove if you need to disable one of them).
     permalinks:
       year: "/blog/:year/"
       tags: "/blog/:type/:name/"
       categories: "/blog/:type/:name/"
   books:
-    enabled: [year, tags, categories] # enables year, tag and category archives (remove if you need to disable one of them).
+    enabled: [] # enables year, tag and category archives (remove if you need to disable one of them).
 
 display_tags: ["formatting", "images", "links", "math", "code", "blockquotes"] # these tags will be displayed on the front page of your blog
 display_categories: ["external-services"] # these categories will be displayed on the front page of your blog
@@ -383,8 +426,8 @@ scholar:
 # Display different badges withs stats for your publications
 # Customize badge behavior in _layouts/bib.liquid
 enable_publication_badges:
-  altmetric: true # Altmetric badge (Customization options: https://badge-docs.altmetric.com/index.html)
-  dimensions: true # Dimensions badge (Customization options: https://badge.dimensions.ai/)
+  altmetric: false # Altmetric badge (Customization options: https://badge-docs.altmetric.com/index.html)
+  dimensions: false # Dimensions badge (Customization options: https://badge.dimensions.ai/)
   google_scholar: true # Google Scholar badge (https://scholar.google.com/intl/en/scholar/citations.html)
   inspirehep: true # Inspire HEP badge (https://help.inspirehep.net/knowledge-base/citation-metrics/)
 
@@ -450,7 +493,13 @@ imagemagick:
     - 800
     - 1400
   input_directories:
-    - assets/img/
+    - assets/img/simplefold/
+    - assets/img/pcomole/
+    - assets/img/medgemma/
+    - assets/img/saw/
+    - assets/img/histoselect/
+    - assets/img/medxedit/
+    - assets/img/authoring-example/
   input_formats:
     - ".jpg"
     - ".jpeg"
@@ -475,14 +524,14 @@ lazy_loading_images: true # enables lazy loading of images (recommended)
 enable_google_verification: false # enables google site verification
 enable_bing_verification: false # enables bing site verification
 enable_cookie_consent: false # enables GDPR-compliant cookie consent dialog (https://github.com/orestbida/cookieconsent)
-enable_masonry: true # enables automatic project cards arrangement
+enable_masonry: false # enables automatic project cards arrangement
 enable_math: true # enables math typesetting (uses MathJax)
 enable_tooltips: false # enables automatic tooltip links generated for each section titles on pages and posts
 enable_darkmode: true # enables switching between light/dark modes
 enable_navbar_social: false # enables displaying social links in the navbar on the about page
 enable_project_categories: true # enables categorization of projects into multiple categories
 enable_medium_zoom: true # enables image zoom feature (as on medium.com)
-enable_progressbar: true # enables a horizontal progress bar linked to the vertical scroll position
+enable_progressbar: false # enables a horizontal progress bar linked to the vertical scroll position
 enable_video_embedding: false # enables video embedding for bibtex entries. If false, the button opens the video link in a new window.
 
 # -----------------------------------------------------------------------------

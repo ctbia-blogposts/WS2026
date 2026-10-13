@@ -1,0 +1,6 @@
+<footer class="seminar-site-footer">
+  {{ site.data.seminar.unit | escape }} · {{ site.data.seminar.university | escape }}
+  {% for logo in site.data.seminar.logos %}
+    <a href="{{ logo.url }}"><img src="{{ logo.src | relative_url }}" alt="{{ logo.alt | escape }}" width="160" loading="lazy"></a>
+  {% endfor %}
+</footer>

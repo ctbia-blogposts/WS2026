@@ -1,0 +1,19 @@
+{% if page.at_a_glance %}
+  <section class="seminar-glance" aria-labelledby="glance-heading">
+    <h2 id="glance-heading">Paper at a Glance</h2>
+    <dl>
+      <div>
+        <dt>Problem</dt>
+        <dd>{{ page.at_a_glance.problem | escape }}</dd>
+      </div>
+      <div>
+        <dt>Key idea</dt>
+        <dd>{{ page.at_a_glance.key_idea | escape }}</dd>
+      </div>
+      <div>
+        <dt>Why it matters</dt>
+        <dd>{{ page.at_a_glance.why_it_matters | escape }}</dd>
+      </div>
+    </dl>
+  </section>
+{% endif %}

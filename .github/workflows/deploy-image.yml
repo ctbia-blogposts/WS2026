@@ -16,6 +16,7 @@ on:
 
 jobs:
   build:
+    if: github.repository == 'alshedivat/al-folio'
     runs-on: ubuntu-latest
     if: github.repository_owner == 'alshedivat'
 

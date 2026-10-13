@@ -1,0 +1,14 @@
+{% assign callout_title = 'Key idea' %}
+{% case include.kind %}
+  {% when 'why' -%}
+    {%- assign callout_title = 'Why does this matter?' %}
+  {% when 'background' -%}
+    {%- assign callout_title = 'Background' %}
+  {% when 'critical' -%}
+    {%- assign callout_title = 'Critical view / limitation' %}
+  {% when 'takeaway' -%}
+    {%- assign callout_title = 'Takeaway' %}
+{% endcase %}
+<blockquote class="seminar-callout">
+  <strong>{{ callout_title }}</strong>{{ include.content | markdownify }}
+</blockquote>

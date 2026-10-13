@@ -65,7 +65,7 @@ if (/gem 'al_math',\s*:git =>/.test(gemfile)) {
   failures.push("`Gemfile` must not use git-branch pin for `al_math`; use released gem version.");
 }
 
-for (const forbiddenPath of ["_includes", "_layouts", "_sass", "_scripts", "assets/tailwind", "tailwind.config.js", "assets/webfonts"]) {
+for (const forbiddenPath of ["_sass", "_scripts", "assets/tailwind", "tailwind.config.js", "assets/webfonts"]) {
   if (exists(forbiddenPath)) {
     failures.push(`Starter must not own core component path \`${forbiddenPath}\`; move ownership to the corresponding gem.`);
   }
@@ -89,9 +89,9 @@ for (const requiredPath of ["test/visual", "test/integration_plugin_toggles.sh",
 }
 
 if (failures.length > 0) {
-  console.error("Starter style contract check failed:");
+  console.error("Seminar site style contract check failed:");
   failures.forEach((message) => console.error(`- ${message}`));
   process.exit(1);
 }
 
-console.log("Starter style contract check passed.");
+console.log("Seminar site style contract check passed.");

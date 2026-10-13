@@ -1,0 +1,25 @@
+{% assign seminar = site.data.seminar %}
+<a class="seminar-skip" href="#main-content">Skip to content</a>
+<header class="seminar-header">
+  <div>
+    {% if page.home %}<h1 class="seminar-brand">{% else %}<div class="seminar-brand">{% endif %}
+    <a href="{{ '/' | relative_url }}">{{ seminar.name | escape }}</a>
+    {% if page.home %}</h1>{% else %}</div>{% endif %}
+    <p class="seminar-secondary">{{ seminar.semester | escape }} · {{ seminar.university | escape }}</p>
+  </div>
+  <nav aria-label="Main navigation">
+    {% for item in seminar.navigation %}
+      <a
+        href="{{ item.url | relative_url }}"
+        {% if page.url == item.url %}
+          aria-current="page"
+        {% endif %}
+      >
+        {{- item.title | escape -}}
+      </a>
+    {% endfor %}
+    {% if site.enable_darkmode -%}
+      <button id="light-toggle" type="button" aria-label="Cycle light, dark, and system theme">Theme <span aria-hidden="true">◐</span></button>
+    {%- endif %}
+  </nav>
+</header>

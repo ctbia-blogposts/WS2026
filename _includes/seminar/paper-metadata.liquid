@@ -1,0 +1,13 @@
+{% assign metadata_article = include.article %}
+{{ metadata_article.research_category | escape -}}
+{%- if metadata_article.venue %} · {{ metadata_article.venue | escape }}{% endif -%}
+{%- if metadata_article.paper_year %} {{ metadata_article.paper_year }}{% endif -%}
+{%- if include.show_author %}
+  ·
+  {% if metadata_article.distill_demo -%}
+    al-folio demonstration · Example authors
+  {%- else -%}
+    {{- metadata_article.student_author | default: 'Author unassigned' | escape -}}
+  {%- endif -%}
+  {%- if metadata_article.status == 'forthcoming' %} · Article forthcoming{% endif -%}
+{%- endif %}

@@ -1,0 +1,18 @@
+{% assign figure_layout = '' %}
+{% if include.layout == 'l-page-outset' %}
+  {% assign figure_layout = 'l-page-outset' %}
+{% elsif include.wide or include.layout == 'l-page' %}
+  {% assign figure_layout = 'l-page' %}
+{% endif %}
+<figure class="seminar-figure {{ figure_layout }}">
+  {% if include.neutral_background %}<div class="seminar-figure-neutral">{% endif %}
+  {% if include.src %}
+    <img src="{{ include.src | relative_url }}" alt="{{ include.alt | escape }}" loading="lazy">
+  {% else %}
+    {{ include.content }}
+  {% endif %}
+  {% if include.neutral_background %}</div>{% endif %}
+  {% if include.caption %}
+    <figcaption>{{ include.caption | markdownify }}</figcaption>
+  {% endif %}
+</figure>

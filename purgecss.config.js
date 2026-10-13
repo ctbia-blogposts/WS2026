@@ -4,6 +4,10 @@ module.exports = {
   output: "_site/assets/css/",
   skippedContentGlobs: ["_site/assets/**/*.html"],
   safelist: [
+    // Scientific runtime elements/classes are inserted after the static build.
+    "unloaded",
+    "mermaid",
+    "mjx-container",
     "collapse",
     "collapsing",
     "show",

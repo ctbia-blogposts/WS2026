@@ -1,3 +1,13 @@
+# WS2026 seminar site
+
+This repository is a derived yearly site, not the upstream al-folio starter. The user has authorized site-specific layouts, includes, and CSS. Keep gem implementations and vendored runtime unchanged. The inherited upstream rules below describe dependency ownership; their ban on `_layouts/` and `_includes/` applies to the upstream starter only.
+
+Seminar identity, semester, navigation, and optional logos live in `_data/seminar.yml`. The deployment baseurl is `/WS2026`. Build with `bundle exec jekyll build` or preview with `docker compose up --build` at `http://localhost:8080/WS2026/`. See [docs/SEMINAR.md](docs/SEMINAR.md) for authoring, verification, and template extraction.
+
+Site-specific design uses `assets/css/seminar.css`, loaded after the gem styles, with no local Tailwind/Sass compilation. Intentional gem overrides must be audited and recorded in `.al-folio-overrides.yml`. `npm run lint:style-contract` permits site layouts/includes while retaining gem wiring and asset ownership checks.
+
+---
+
 # Agent Guidelines for al-folio (v1.x)
 
 **This file is the authoritative entry point for coding agents working in this repo.** Read it before making any change. It is intentionally short and tool-neutral; it links to the one place each longer-form fact lives.
