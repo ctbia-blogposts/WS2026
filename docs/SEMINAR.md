@@ -28,6 +28,8 @@ GitHub Actions continues to build Jekyll and publish `_site` to `gh-pages`. Enab
 
 ## Add a student article
 
+The student-facing [submission workflow](https://ctbia-blogposts.github.io/WS2026/writing-guidelines/#submit-your-article-with-a-pull-request) explains forks, pull requests, and requests to publish an online draft. PR builds run checks; deployment to the shared site happens after merge.
+
 Copy `docs/examples/seminar-post.md` into a dated Markdown file under `_posts/`. Keep the template's `layout: seminar` and `seminar: true`. Remove `example: true`, choose a unique numeric `order`, and fill in:
 
 - `title`: the full article title (usually the full paper title); `research_category`: the topic; `hook`: the one-sentence pedagogical subtitle; `description`: a short metadata summary; and `student_author`: the student’s name.

@@ -1,12 +1,24 @@
 const { test, expect } = require("@playwright/test");
 
 for (const theme of ["light", "dark"]) {
-  test(`two-article publication and Distill layout (${theme})`, async ({ page }, testInfo) => {
+  test(`publication index and Distill layout (${theme})`, async ({ page }, testInfo) => {
     await page.route("**/livereload.js*", (route) => route.abort());
     await page.addInitScript((theme) => localStorage.setItem("theme", theme), theme);
     await page.goto("/WS2026/", { waitUntil: "networkidle" });
-    await expect(page.locator(".seminar-entry")).toHaveCount(2);
-    await expect(page.locator(".seminar-entry h2")).toHaveText(["a distill-style blog post", "Denoising Diffusion Probabilistic Models"]);
+    expect(await page.locator(".seminar-entry").count()).toBeGreaterThanOrEqual(2);
+    const articlePaths = await page.locator(".seminar-entry h2 a").evaluateAll((links) => links.map((link) => link.getAttribute("href")));
+    const expectArticleNavigation = async (path) => {
+      const index = articlePaths.indexOf(path);
+      expect(index).toBeGreaterThanOrEqual(0);
+      for (const [label, destination] of [
+        [/Previous article/, articlePaths[index - 1]],
+        [/Next article/, articlePaths[index + 1]],
+      ]) {
+        const link = page.getByRole("link", { name: label });
+        if (destination) await expect(link).toHaveAttribute("href", destination);
+        else await expect(link).toHaveCount(0);
+      }
+    };
     await expect(page.getByRole("link", { name: "a distill-style blog post", exact: true })).toHaveAttribute("href", "/WS2026/articles/distill/");
     await expect(page.getByRole("link", { name: "Denoising Diffusion Probabilistic Models", exact: true })).toHaveAttribute(
       "href",
@@ -33,10 +45,9 @@ for (const theme of ["light", "dark"]) {
 
     await page.getByRole("link", { name: "Denoising Diffusion Probabilistic Models", exact: true }).click();
     await expect(page.locator("d-title h1")).toHaveText("Denoising Diffusion Probabilistic Models");
-    await expect(page.locator(".seminar-byline")).toContainText("Supervisor: Supervisor Name");
+    await expect(page.locator(".seminar-byline")).toContainText(/\S/);
     await expect(page.locator(".seminar-glance dt")).toHaveText(["Problem", "Key idea", "Why it matters"]);
-    await expect(page.getByRole("link", { name: /Next article/ })).toHaveCount(0);
-    await expect(page.getByRole("link", { name: /Previous article/ })).toHaveAttribute("href", "/WS2026/articles/distill/");
+    await expectArticleNavigation("/WS2026/articles/ddpm/");
     const figureStyle = await page
       .locator(".seminar-figure")
       .first()
@@ -88,10 +99,9 @@ for (const theme of ["light", "dark"]) {
     );
     expect(brokenInternalPaths).toEqual([]);
 
-    await page.getByRole("link", { name: /Previous article/ }).click();
+    await page.goto("/WS2026/articles/distill/", { waitUntil: "domcontentloaded" });
     await expect(page.locator("d-title h1")).toHaveText("a distill-style blog post");
-    await expect(page.getByRole("link", { name: /Next article/ })).toHaveAttribute("href", "/WS2026/articles/ddpm/");
-    await expect(page.getByRole("link", { name: /Previous article/ })).toHaveCount(0);
+    await expectArticleNavigation("/WS2026/articles/distill/");
     await expect(page.locator("d-cite").first()).toContainText("1", { timeout: 30000 });
     await expect(page.locator("d-citation-list")).toContainText("DRAW", { timeout: 30000 });
     await expect(page.locator("mjx-container").first()).toBeVisible({ timeout: 30000 });

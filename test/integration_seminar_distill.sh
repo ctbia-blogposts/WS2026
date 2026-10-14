@@ -7,7 +7,7 @@ bundle exec jekyll build --destination "$check_dir/site" > "$check_dir/build.log
   cat "$check_dir/build.log"
   exit 1
 }
-bundle exec ruby -rpathname -e '
+bundle exec ruby -rpathname -ryaml -rcgi -e '
   root = Pathname.new(ARGV.fetch(0))
   demo = root.join("articles/distill/index.html").read
   example = root.join("articles/ddpm/index.html").read
@@ -15,15 +15,16 @@ bundle exec ruby -rpathname -e '
     abort "Missing native Distill marker: #{marker}" unless demo.include?(marker)
   end
   abort "Full demo is missing seminar footer" unless demo.include?("This feature demonstration uses the seminar layout") && demo.include?("seminar-article-footer")
-  abort "Seminar author mapping missing" unless example.include?("Student Name") && example.include?("seminar-byline")
+  metadata = YAML.safe_load(File.read("_posts/2026-10-01-ddpm.md").split(/^---\s*$/)[1])
+  abort "Seminar byline missing" unless example.include?("seminar-byline")
+  [metadata["student_author"], metadata["supervisor"]].compact.reject(&:empty?).each do |name|
+    abort "Article metadata missing from rendered output: #{name}" unless example.include?(CGI.escapeHTML(name))
+  end
   abort "Topic color classes returned" if demo.include?("accent-") || example.include?("accent-")
   index = root.join("index.html").read
-  abort "Article index must contain exactly two entries" unless index.scan(/class="seminar-entry"/).size == 2
+  abort "Article index must retain both demonstration articles" unless index.scan(/class="seminar-entry"/).size >= 2
   ["/WS2026/articles/distill/", "/WS2026/articles/ddpm/"].each do |url|
     abort "Missing index article: #{url}" unless index.include?(url)
   end
-  %w[simplefold pcomole medgemma saw histoselect medxedit authoring-example].each do |slug|
-    abort "Removed article is still generated: #{slug}" if root.join("articles", slug, "index.html").exist?
-  end
-  puts "Distill and DDPM build successfully; the index contains exactly these two articles."
+  puts "Distill and DDPM build successfully and remain in the article index."
 ' "$check_dir/site"
